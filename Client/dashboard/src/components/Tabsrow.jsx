@@ -10,6 +10,8 @@ import AccordionForCharts from './AccordionForCharts';
 import Filters from './Filters';
 import axios from 'axios';
 
+const BASE_URL = 'https://data-visualization-dashboard-backend-wwze.onrender.com';
+
 const Tabsrow = ({ data, setMainData }) => {
     // state to store the number of data cards we want to display at a time, we'll update it on click of a button
     const [limit, setLimit] = useState(5);
@@ -20,7 +22,7 @@ const Tabsrow = ({ data, setMainData }) => {
     const handleSearchResult = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.get(`https://dashboard-6bfs.onrender.com/api/data/any/${search}`);
+            const response = await axios.get(`${BASE_URL}/api/data/any/${search}`);
             setMainData(response.data.data);
             setSearch("");
         }
@@ -36,7 +38,7 @@ const Tabsrow = ({ data, setMainData }) => {
                 id="uncontrolled-tab-example"
                 className="mb-3"
             >
-                <Tab eventKey="data" title="Data">
+                <Tab eventKey="data" title="Data" style={{justifyContent: 'space-evenly'}} className='tab'>
                     <form className="form-inline" onSubmit={handleSearchResult} style={{ display: 'flex', justifyContent: 'space-evenly' }}>
                         <input className="form-control mr-sm-2" type="search" placeholder="Search by Sector Name, Topic, Title, Pestle, Source, Insight, URL..." aria-label="Search" onChange={(e) => setSearch(e.target.value)} style={{ marginRight: '1rem' }} />
                         <button className="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
@@ -44,19 +46,20 @@ const Tabsrow = ({ data, setMainData }) => {
                     <Filters setMainData={setMainData} />
 
                     {limitedData && limitedData.length === 0 ? (
-                        <div style={{margin:'1rem'}}>No data found, or please wait for a while.</div>
+                        <div style={{margin:'3rem', marginLeft: '35vw'}}>Data Loading... Please wait for a while!</div>
                     ) : limitedData && limitedData.length > 0 ? (
                         <CardGroup>
                             {limitedData.map((e, i) => {
+                                console.log(i);
                                 return <CardsForData item={e} key={i} />
                             })}
                         </CardGroup>
                     ) : (
                         <div>Loading...</div>
                     )}
-                    <Button variant="primary" onClick={() => setLimit(prev => prev + 5)}>Show More</Button>
+                        <Button variant="primary" onClick={() => setLimit(prev => prev + 4)} style={{marginLeft: '40%'}}>Show More</Button>
                 </Tab>
-                <Tab eventKey="chart" title="Interactive Insights/Dashboard">
+                <Tab eventKey="chart" title="Interactive Insights">
                     <form className="form-inline" onSubmit={handleSearchResult} style={{ display: 'flex', justifyContent: 'space-evenly' }}>
                         <input className="form-control mr-sm-2" type="search" placeholder="Search by Sector Name, Topic, Title, Pestle, Source, Insight, URL..." aria-label="Search" onChange={(e) => setSearch(e.target.value)} style={{ marginRight: '1rem' }} />
                         <button className="btn btn-primary my-2 my-sm-0" type="submit">Search</button>

@@ -6,6 +6,7 @@ import './App.css';
 import Header from './components/Header';
 import Tabsrow from './components/Tabsrow';
 
+const BASE_URL = 'https://data-visualization-dashboard-backend-wwze.onrender.com';
 
 function App() {
     //state to save data received from the server
@@ -13,7 +14,8 @@ function App() {
     //asynchronous function to fetch data from server and updating the state
     const getDataFromDB = async() => {
         try{
-            const response = await axios.get("https://dashboard-6bfs.onrender.com/api/data/all");
+            const response = await axios.get(`${BASE_URL}/api/data/all`);
+            console.log(response);
             setMainData(response.data.data)
         }
         catch(e){

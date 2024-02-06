@@ -3,6 +3,8 @@ import Button from 'react-bootstrap/Button';
 import { Dropdown } from 'react-bootstrap';
 import axios from 'axios';
 
+const BASE_URL = 'https://data-visualization-dashboard-backend-wwze.onrender.com';
+
 // here we are returning a bootstrap dropdown and just a button
 const Filters = ({ setMainData }) => {
     //function to call the getDataFromDB function and passing the 'year' to it entered by the user
@@ -12,7 +14,7 @@ const Filters = ({ setMainData }) => {
     // func to fetch the filtered data by year and update the state
     const getDataFromDB = async(year) => {
         try{
-            const response = await axios.get(`https://dashboard-6bfs.onrender.com/api/data/year/${year}`);
+            const response = await axios.get(`${BASE_URL}/api/data/year/${year}`);
             setMainData(response.data.data)
         }
         catch(e){
@@ -22,8 +24,9 @@ const Filters = ({ setMainData }) => {
     // func to handle the "reset filters button" by making another api call and update state 
     const handleReset = async() => {
         try{
-            const response = await axios.get("https://dashboard-6bfs.onrender.com/api/data/all");
-            setMainData(response.data.data)
+            const response = await axios.get(`${BASE_URL}/api/data/all`);
+            setMainData(response.data.data);
+
         }
         catch(e){
             console.log(e)
@@ -36,7 +39,7 @@ const Filters = ({ setMainData }) => {
 
             <Dropdown onSelect={handleSelect}>
 
-                <Dropdown.Toggle variant="success" id="dropdown-basic">
+                <Dropdown.Toggle  variant="outline-secondary" id="dropdown-basic">
                     Filter By Year
                 </Dropdown.Toggle>
 
@@ -51,7 +54,7 @@ const Filters = ({ setMainData }) => {
                 </Dropdown.Menu>
             </Dropdown>
 
-            <Button variant="danger" onClick={handleReset} style={{ marginLeft: '1vw', width: '10rem' }}>Reset Filters</Button>
+            <Button variant="outline-secondary" onClick={handleReset} style={{ marginLeft: '1vw', width: '10rem' }}>Reset Filters</Button>
         </div>
     )
 }

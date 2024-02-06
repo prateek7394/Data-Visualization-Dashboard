@@ -33,6 +33,18 @@ const BarChart = ({serverData}) => {
                             label: 'Total Projects',
                             data: sectorCount.map(e=>e.count),
                             borderWidth: 1,
+                            backgroundColor: [
+                                'rgb(255, 99, 132)',
+                                'rgb(54, 162, 167)',
+                                '#b30000',
+                                '#488f31',
+                                'gray',
+                                'yellow',
+                                'orange',
+                                '#ea714e',
+                                'purple',
+                                
+                            ],
                         },
                         // {
                         //     label: 'Quantity',

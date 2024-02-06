@@ -29,6 +29,18 @@ const PieChart = ({serverData}) => {
                             data: pestleCount.map(i=>i.count),
                             borderWidth: 1,
                             hoverOffset: 5,
+                            backgroundColor: [
+                                'rgb(255, 99, 132)',
+                                'rgb(54, 162, 167)',
+                                'rgb(255, 205, 86)',
+                                '#488f31',
+                                'gray',
+                                'yellow',
+                                'orange',
+                                '#ea714e',
+                                'purple',
+                                
+                            ],
                         },
                     ]
                 }}

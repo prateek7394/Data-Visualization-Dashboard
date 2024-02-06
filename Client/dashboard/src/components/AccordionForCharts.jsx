@@ -15,7 +15,7 @@ const AccordionForCharts = ({ data }) => {
         <div>
             <Accordion>
                 <Accordion.Item eventKey="0">
-                    <Accordion.Header>Polar Area and Doughnut Charts - represents number of countries, sectors, topics, pestles, sources, etc are involved</Accordion.Header>
+                    <Accordion.Header>Polar Area and Doughnut Charts - represents number of countries, sectors, topics, pestles, sources, etc. that are involved</Accordion.Header>
                     <Accordion.Body>
                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                             <PolarChart serverData={data} />
